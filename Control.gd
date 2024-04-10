@@ -7,18 +7,16 @@ var isUppercase = false
 @onready var WithSymbols = $Button2/WithSymbols
 @onready var WithUppercase = $Button3/WithUppercase
 @onready var WithSpaces = $Button4/WithSpaces
-@onready var Line = $Button5/LineEdit
 @onready var itemlist = $Button5/ItemList
 var names = ["Dog", "Cat", "Horse"]
 var names2 = ["Big", "Sad", "Happy"]
 var symbols = ["!", "@", "%", "-"]
-func _ready():
-	#for i in itemList
-		#itemlist.add_item(str(names[i]))
+
+func _ready(): #Ryder 
 	
-	#Get the ItemList
-	#Iterate through the names list
-	#Display each name as an entry on the item list
+	for i in names:
+		itemlist.add_item(str(i))
+	
 	
 	
 func generateName(): #Written by Owen
