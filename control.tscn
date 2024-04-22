@@ -127,6 +127,7 @@ scale = Vector2(3, 3)
 theme = SubResource("Theme_x8ltw")
 
 [node name="Button6" type="Button" parent="."]
+layout_mode = 0
 offset_left = 202.0
 offset_top = 1119.0
 offset_right = 400.0
@@ -140,4 +141,5 @@ offset_bottom = 23.0
 
 [connection signal="toggled" from="Button/MoreNumbers" to="." method="_on_check_button_toggled"]
 [connection signal="toggled" from="Button2/WithSymbols" to="." method="_on_with_symbols_toggled"]
+[connection signal="item_selected" from="Button5/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="Button6" to="." method="_on_button_6_pressed"]

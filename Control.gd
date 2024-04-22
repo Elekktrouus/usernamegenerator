@@ -15,25 +15,34 @@ var symbols = ["!", "@", "%", "-"]
 var randomName = ["Dog", "Cat", "Horse"]
 var name1 = ""
 var name2 = ""
+var setword
 
 
 func _ready(): #Ryder
-	for i in names:
+	for i in names2:
 		itemlist.add_item(str(i))
 	
 	
 	
-func generateName(): #Written by Owen
+	
+func generateName(OneWord): #Written by Owen
 	var rng = RandomNumberGenerator.new()
 	var name1 = ""
 	var name2 = ""
 	if WithUppercase.button_pressed == true:
-		
 		name1 = names[rng.randi_range(0,names.size()-1)]
-		name2 = names2[rng.randi_range(0,names2.size()-1)]
+		if not OneWord:
+			if setword == null:
+				name2 = names2[rng.randi_range(0,names2.size()-1)]
+			else:
+				name2 = setword
 	else:
 		name1 = names[rng.randi_range(0,names.size()-1)].to_lower()
-		name2 = names2[rng.randi_range(0,names2.size()-1)].to_lower()
+		if not OneWord:
+			if setword == null:
+				name2 = names2[rng.randi_range(0,names2.size()-1)].to_lower()
+			else:
+				name2 = setword.to_lower()
 	if WithSpaces.button_pressed:
 		return(str(name2, " ", name1))
 	else:
@@ -51,17 +60,27 @@ func generateNumbers(lower,upper):
 
 func _on_button_6_pressed():
 	var concatenatedname
-	print(generateName())
+	var text
+	var numbers
+	var symbols
+	text = (generateName(OneWord.button_pressed))
 	if WithNumbers.button_pressed == true:
-		print(generateNumbers(1000,9999))
+		numbers = (generateNumbers(1000,9999))
 	else:
-		print(generateNumbers(10,99))
+		numbers = (generateNumbers(10,99))
 	if WithSymbols.button_pressed == true:
 		print(GenerateSymbols())
+		symbols = str((GenerateSymbols()))
+		concatenatedname = (str(symbols)+str(text)+str(numbers)+str(symbols))
+	else:
+		concatenatedname = (str(text)+str(numbers))
+	$Label.text = concatenatedname
+	print(concatenatedname)
+
+
+		
 		
 
-func _on_button_7_pressed():
-	if OneWord.button_pressed == true:
-		print(str(name1))
-		
-		
+
+func _on_item_list_item_selected(index):
+	setword = str(names2[index])
